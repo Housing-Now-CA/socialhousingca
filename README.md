@@ -42,15 +42,16 @@ There is no database, no CMS, no build step the user runs locally. The Sheet is 
 
 ## How the build works
 
-The build script reads from five tabs in the Google Sheet:
+The build script reads from six tabs in the Google Sheet:
 
 | Tab | Purpose |
 |---|---|
-| `page_copy` | Key/value text for the site, plus three reserved control rows at the top |
+| `page_copy` | Key/value text for the site, plus three reserved control rows at the top. Drives all editable copy: headings, body text, button labels, video IDs, nav links, footer, etc. |
 | `map_locations` | One row per map pin |
 | `partners` | One row per coalition partner |
 | `resources` | One row per Library PDF / brief |
 | `stories` | One row per News, Story, or Campaign card |
+| `model_cards` | One row per card in "Social Housing Models" or "Social Housing Principles" grids |
 
 There's also a `map key` tab that's reference-only documentation — the build does not read it.
 
@@ -107,6 +108,10 @@ To publish outside business hours, the editor manually fires the workflow from t
 
 Reserved keys: `publish`, `publish_token`, `note` (filtered out before render).
 
+The `page_copy` tab holds essentially all editable text on the homepage — section eyebrows, headings, body paragraphs, button labels, navigation, footer, meta tags, video IDs, and more. Rows whose `key` starts with `---` (e.g., `---HERO---`) are visual section separators in the Sheet and don't render anywhere on the site.
+
+The list of keys evolves with the site. The current full inventory lives in the editor's guide and the `page_copy.csv` import file in the repo.
+
 ### `map_locations`
 | Column | Type | Notes |
 |---|---|---|
@@ -153,6 +158,17 @@ Reserved keys: `publish`, `publish_token`, `note` (filtered out before render).
 | body | string | Optional excerpt |
 | link_url | string | Optional "Read More" destination |
 | active | bool | `TRUE` / `FALSE` |
+
+### `model_cards`
+| Column | Type | Notes |
+|---|---|---|
+| id | string | Unique identifier per row (slug-style: `clt`, `pha`, `permaff`, etc.) |
+| type | string | `model` (appears under "Social Housing Models") or `principle` (appears under "Social Housing Principles") |
+| title | string | Card title (the h3 heading) |
+| body | string | Card body text |
+| active | bool | `TRUE` / `FALSE` |
+
+Row order in the Sheet determines display order on the page. To reorder cards, drag rows up or down. The build sorts cards by `type`, then preserves Sheet row order within each type.
 
 ## Known gotchas
 
