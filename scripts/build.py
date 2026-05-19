@@ -84,6 +84,7 @@ CONTENT_TABS = {
     "partners": "partners",
     "resources": "resources",
     "stories": "stories",
+    "model_cards": "model_cards",
 }
 
 # Keys reserved at the top of page_copy for build control. These never
@@ -181,6 +182,45 @@ def split_page_copy(rows: list[dict]) -> tuple[dict[str, str], dict[str, str]]:
 # ---------------------------------------------------------------------------
 # Section renderers
 # ---------------------------------------------------------------------------
+
+def render_model_cards(rows: list[dict], filter_type: str) -> str:
+    """Render the 'Social Housing Models' or 'Social Housing Principles' cards.
+
+    `filter_type` is either 'model' or 'principle'. Rows in the model_cards
+    Sheet tab are filtered by the `type` column; row order in the Sheet is
+    preserved (no sort).
+
+    Sheet columns: id, type, title, body, active. Empty title is treated as
+    inactive (defensive).
+    """
+    active = [
+        r for r in rows
+        if is_active(r) and r.get("type", "").strip().lower() == filter_type
+    ]
+    if not active:
+        return f'      <p class="empty">No {filter_type}s configured yet.</p>'
+
+    cards = []
+    for i, r in enumerate(active):
+        title = r.get("title", "").strip()
+        body = r.get("body", "").strip()
+        if not title:
+            continue
+
+        # Stagger the reveal animation across the row, matching the original
+        # hardcoded markup. Cycle through delay-1, delay-2, then no-delay.
+        delay_classes = ["", " reveal-delay-1", " reveal-delay-2"]
+        delay = delay_classes[i % 3]
+
+        cards.append(
+            f'      <div class="what-card reveal{delay}">\n'
+            f'        <h3>{escape(title)}</h3>\n'
+            f'        <p>{escape(body)}</p>\n'
+            f'      </div>'
+        )
+
+    return "\n".join(cards)
+
 
 def render_partners(rows: list[dict]) -> str:
     """Render Partners (uses .partner-cell CSS), sorted alphabetically by name.
@@ -607,6 +647,8 @@ def main() -> int:
         "resources": render_resources(data["resources"]),
         "partners": render_partners(data["partners"]),
         "map_data": render_map_data(data["map_locations"]),
+        "model_cards_models": render_model_cards(data["model_cards"], "model"),
+        "model_cards_principles": render_model_cards(data["model_cards"], "principle"),
     }
     sections_for_map = {
         "map_data": render_map_data(data["map_locations"]),
