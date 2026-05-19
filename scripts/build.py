@@ -183,12 +183,16 @@ def split_page_copy(rows: list[dict]) -> tuple[dict[str, str], dict[str, str]]:
 # ---------------------------------------------------------------------------
 
 def render_partners(rows: list[dict]) -> str:
-    """Render Partners (uses .partner-cell CSS).
+    """Render Partners (uses .partner-cell CSS), sorted alphabetically by name.
 
     `logo_url` may be a relative path (images/partners/acce.png) or full URL.
     Empty `logo_url` → text-only fallback card.
+
+    Sort is case-insensitive and stable, so Nathan doesn't have to manually
+    reorder rows in the Sheet when adding new partners.
     """
     active = [r for r in rows if is_active(r)]
+    active.sort(key=lambda r: r.get("name", "").strip().lower())
     if not active:
         return '      <p class="empty">Partners coming soon.</p>'
 
@@ -324,10 +328,13 @@ def render_stories(rows: list[dict]) -> str:
         media_html = ""
         yt_id = youtube_id(media_url)
         if yt_id:
+            # Use youtube-nocookie.com (privacy-enhanced mode) — matches what
+            # the privacy policy claims. YouTube does not set tracking cookies
+            # until the user actively plays the video.
             media_html = (
                 f'        <div class="story-media">\n'
                 f'          <iframe\n'
-                f'            src="https://www.youtube.com/embed/{yt_id}"\n'
+                f'            src="https://www.youtube-nocookie.com/embed/{yt_id}"\n'
                 f'            title="{escape(title)}"\n'
                 f'            allow="accelerometer; autoplay; clipboard-write; '
                 f'encrypted-media; gyroscope; picture-in-picture"\n'
