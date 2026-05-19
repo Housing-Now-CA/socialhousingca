@@ -1426,7 +1426,78 @@ a { color: var(--indigo); }
   .modal-img-wrap { height: 260px; border-radius: 14px 14px 0 0; }
 }
 
-/* ── NAV DROPDOWNS ────────────────────────────────── */
+/* ── WHAT SECTION — SUBSECTION HEADERS + VIDEO GRID ─ */
+.what-subhead {
+  margin: 2.5rem 0 1rem;
+}
+.what-subhead h3 {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--marigold-d);
+  margin-bottom: 0.35rem;
+}
+.what-subhead p {
+  font-size: 0.92rem;
+  line-height: 1.6;
+  color: var(--meta-txt);
+  max-width: 56ch;
+}
+.what-subhead.first { margin-top: 1rem; }
+
+.what-videos {
+  margin-top: 3rem;
+}
+.video-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+.video-card {
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1.5px solid #DDE1EC;
+  background: var(--indigo-x);
+  box-shadow: 0 2px 8px rgba(30, 58, 110, 0.06);
+}
+.video-card .video-frame {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  width: 100%;
+  background: var(--indigo-x);
+}
+.video-card iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  display: block;
+}
+.video-card .video-label {
+  padding: 0.7rem 1rem;
+  background: var(--indigo);
+  color: var(--marigold);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  border-top: 2px solid var(--marigold);
+}
+@media (min-width: 700px) {
+  .video-grid { grid-template-columns: 1fr 1fr; }
+}
+
+/* ── MAP — HELPER HINT TEXT ───────────────────────── */
+.map-hint {
+  font-size: 0.82rem;
+  font-style: italic;
+  color: rgba(255,255,255,0.55);
+  margin-top: 0.5rem;
+}
+
 .nav-links li { position: relative; }
 .nav-links .has-submenu > a::after {
   content: "▾";
@@ -1783,6 +1854,10 @@ body { top: 0 !important; }                        /* prevent translate-bar shif
       </div>
     </div>
 
+    <div class="what-subhead reveal first">
+      <h3>Social Housing Models</h3>
+      <p>Four ownership and governance structures that hold land or buildings outside the speculative market.</p>
+    </div>
     <div class="what-grid">
       <div class="what-card reveal">
         <h3>Community Land Trusts</h3>
@@ -1800,13 +1875,61 @@ body { top: 0 !important; }                        /* prevent translate-bar shif
         <h3>Social Purpose Developers</h3>
         <p>Mission-driven nonprofits that develop and operate permanently affordable housing outside the for-profit market.</p>
       </div>
+    </div>
+
+    <div class="what-subhead reveal">
+      <h3>Social Housing Principles</h3>
+      <p>The values that guide social housing projects across every model.</p>
+    </div>
+    <div class="what-grid">
+      <div class="what-card reveal">
+        <h3>Permanently Affordable</h3>
+        <p>Unlike time-limited subsidized housing, social housing stays affordable in perpetuity because it&#x27;s structurally removed from speculation.</p>
+      </div>
       <div class="what-card reveal reveal-delay-1">
-        <h3>Resident Governed</h3>
-        <p>Residents have real decision-making power — not just advisory roles. Governing boards, tenant unions, and formal councils.</p>
+        <h3>Under Community Control</h3>
+        <p>Residents and the broader community hold real decision-making power through boards, tenant unions, and councils — not just advisory roles.</p>
       </div>
       <div class="what-card reveal reveal-delay-2">
-        <h3>Permanently Affordable</h3>
-        <p>Unlike time-limited subsidized housing, social housing stays affordable in perpetuity because it's structurally removed from speculation.</p>
+        <h3>With Tenant Security</h3>
+        <p>Strong protections — just-cause eviction, secure leases, and the right to stay long-term. Housing can&#x27;t be taken away on the whim of a landlord or speculator.</p>
+      </div>
+      <div class="what-card reveal">
+        <h3>Mix of Incomes</h3>
+        <p>Social housing serves people across the income spectrum. Blending low-, moderate-, and middle-income households keeps communities economically integrated and politically resilient.</p>
+      </div>
+    </div>
+
+    <div class="what-videos">
+      <div class="what-subhead reveal">
+        <h3>Watch &amp; Learn</h3>
+        <p>The Alliance for Housing Justice explains social housing in two minutes — in English and Spanish.</p>
+      </div>
+      <div class="video-grid">
+        <div class="video-card reveal">
+          <div class="video-frame">
+            <iframe
+              src="https://www.youtube-nocookie.com/embed/HsYCll9-X6Y?rel=0&modestbranding=1"
+              title="Social Housing 101 — The Answer to America&#x27;s Housing Crisis"
+              allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen
+              loading="lazy">
+            </iframe>
+          </div>
+          <div class="video-label">English</div>
+        </div>
+        <div class="video-card reveal reveal-delay-1">
+          <div class="video-frame">
+            <iframe
+              src="https://www.youtube-nocookie.com/embed/qwDavt_LJhQ?rel=0&modestbranding=1"
+              title="La Vivienda Social 101 — La Solución a la Crisis de Vivienda en EEUU"
+              allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen
+              loading="lazy">
+            </iframe>
+          </div>
+          <div class="video-label">Español</div>
+        </div>
       </div>
     </div>
   </div>
@@ -1817,11 +1940,12 @@ body { top: 0 !important; }                        /* prevent translate-bar shif
   <div class="map-inner">
     <div class="reveal">
       <p class="section-eyebrow">Where It's Happening</p>
-      <h2 class="section-title" id="map-heading">Social housing across California</h2>
+      <h2 class="section-title" id="map-heading">Featured examples of social housing across California</h2>
       <p class="section-body">
         Community land trusts, co-ops, and social purpose developers are already building
-        permanently affordable housing in communities across the state. Tap a marker to learn more.
+        permanently affordable housing across the state. These are featured examples — not a comprehensive directory.
       </p>
+      <p class="map-hint">Tap any marker to read about that project.</p>
     </div>
 
     <!-- Legend (decorative — markers themselves are the interactive elements) -->
@@ -2021,24 +2145,6 @@ body { top: 0 !important; }                        /* prevent translate-bar shif
   </div>
 </section>
 
-<!-- ── SIGN UP ── -->
-<section class="signup-section" id="act" aria-labelledby="act-heading">
-  <div class="signup-inner">
-    <div class="reveal">
-      <p class="section-eyebrow">Get Involved</p>
-      <h2 class="section-title" id="act-heading">Join the campaign</h2>
-      <p class="section-body">
-        Add your name and stay informed. We&#x27;ll share updates on social housing legislation, local organizing, and ways to take action across California.
-      </p>
-    </div>
-    <div class="form-placeholder reveal">
-      <!-- form.123formbuilder.com script begins here -->
-      <script type="text/javascript" defer src="https://form.123formbuilder.com/embed/6951025.js" data-role="form" data-default-width="800px" data-custom-vars="hasEmbedFormStyle=1"></script>
-      <!-- form.123formbuilder.com script ends here -->
-    </div>
-  </div>
-</section>
-
 <!-- ── LIBRARY ── -->
 <section class="briefs-section" id="resources" aria-labelledby="resources-heading">
   <div class="briefs-inner">
@@ -2053,7 +2159,7 @@ body { top: 0 !important; }                        /* prevent translate-bar shif
         <div class="brief-card-top">
           <div class="brief-meta-row">
             <span class="brief-label">Policy Brief</span>
-            <span class="brief-date">May 2026</span>
+            <span class="brief-date">Mar 2026</span>
           </div>
           <div class="brief-title">Designing a Social Housing System</div>
         </div>
@@ -2066,7 +2172,7 @@ body { top: 0 !important; }                        /* prevent translate-bar shif
         <div class="brief-card-top">
           <div class="brief-meta-row">
             <span class="brief-label">Policy Brief</span>
-            <span class="brief-date">May 2026</span>
+            <span class="brief-date">Mar 2026</span>
           </div>
           <div class="brief-title">Who Is Social Housing For?</div>
         </div>
@@ -2079,7 +2185,7 @@ body { top: 0 !important; }                        /* prevent translate-bar shif
         <div class="brief-card-top">
           <div class="brief-meta-row">
             <span class="brief-label">Policy Brief</span>
-            <span class="brief-date">May 2026</span>
+            <span class="brief-date">Mar 2026</span>
           </div>
           <div class="brief-title">Resident Governance</div>
         </div>
@@ -2104,20 +2210,40 @@ body { top: 0 !important; }                        /* prevent translate-bar shif
     <div class="partners-grid reveal">
       <!-- BUILD:partners:START -->
       <a class="partner-cell" href="https://acceaction.org" target="_blank" rel="noopener" title="ACCE">ACCE</a>
-      <a class="partner-cell" href="https://www.act-la.org/" target="_blank" rel="noopener" title="ACT-LA">ACT-LA</a>
-      <a class="partner-cell" href="https://www.cacltnetwork.org/" target="_blank" rel="noopener" title="CA CLT Network">CA CLT Network</a>
-      <a class="partner-cell" href="https://www.greennewdealca.org/" target="_blank" rel="noopener" title="CA Green New Deal Coalition">CA Green New Deal Coalition</a>
       <a class="partner-cell" href="https://www.housingnowca.org/" target="_blank" rel="noopener" title="Housing Now!">Housing Now!</a>
-      <a class="partner-cell" href="https://la2050.org/organizations/la-housing-movement-lab" target="_blank" rel="noopener" title="LA Housing Movement Lab">LA Housing Movement Lab</a>
+      <a class="partner-cell" href="https://www.greennewdealca.org/" target="_blank" rel="noopener" title="CA Green New Deal Coalition">CA Green New Deal Coalition</a>
+      <a class="partner-cell" href="https://www.cacltnetwork.org/" target="_blank" rel="noopener" title="CA CLT Network">CA CLT Network</a>
       <a class="partner-cell" href="https://www.wearelbre.org/" target="_blank" rel="noopener" title="LiBRE">LiBRE</a>
-      <a class="partner-cell" href="https://picocalifornia.org" target="_blank" rel="noopener" title="PICO California">PICO California</a>
-      <a class="partner-cell" href="https://policylink.org" target="_blank" rel="noopener" title="PolicyLink">PolicyLink</a>
       <a class="partner-cell" href="https://powercalifornia.org/" target="_blank" rel="noopener" title="Power California">Power California</a>
+      <a class="partner-cell" href="https://policylink.org" target="_blank" rel="noopener" title="PolicyLink">PolicyLink</a>
+      <a class="partner-cell" href="https://tenantstogether.org" target="_blank" rel="noopener" title="Tenants Together">Tenants Together</a>
       <a class="partner-cell" href="https://publicadvocates.org" target="_blank" rel="noopener" title="Public Advocates">Public Advocates</a>
+      <a class="partner-cell" href="https://www.act-la.org/" target="_blank" rel="noopener" title="ACT-LA">ACT-LA</a>
       <a class="partner-cell" href="https://sfclt.org" target="_blank" rel="noopener" title="SF Community Land Trust">SF Community Land Trust</a>
       <a class="partner-cell" href="https://www.theselc.org/" target="_blank" rel="noopener" title="Sustainable Economies Law Center">Sustainable Economies Law Center</a>
-      <a class="partner-cell" href="https://tenantstogether.org" target="_blank" rel="noopener" title="Tenants Together">Tenants Together</a>
+      <a class="partner-cell" href="https://picocalifornia.org" target="_blank" rel="noopener" title="PICO California">PICO California</a>
+      <a class="partner-cell" href="https://la2050.org/organizations/la-housing-movement-lab" target="_blank" rel="noopener" title="LA Housing Movement Lab">LA Housing Movement Lab</a>
       <!-- BUILD:partners:END -->
+    </div>
+  </div>
+</section>
+
+<!-- ── SIGN UP ── -->
+<section class="signup-section" id="act" aria-labelledby="act-heading">
+  <div class="signup-inner">
+    <div class="reveal">
+      <p class="section-eyebrow">Get Involved</p>
+      <h2 class="section-title" id="act-heading">Join the campaign</h2>
+      <p class="section-body">
+        Add your name and stay informed. We&#x27;ll share updates on social housing legislation, local organizing, and ways to take action across California.
+      </p>
+    </div>
+    <div class="form-placeholder reveal">
+      <!-- form.123formbuilder.com script begins here -->
+      <!-- The script src is rendered from the `contact_form_url` row in the page_copy -->
+      <!-- tab of the Google Sheet. To swap forms entirely, update that Sheet cell. -->
+      <script type="text/javascript" defer src="{{page_copy.contact_form_url}}" data-role="form" data-default-width="800px" data-custom-vars="hasEmbedFormStyle=1"></script>
+      <!-- form.123formbuilder.com script ends here -->
     </div>
   </div>
 </section>
@@ -2353,7 +2479,7 @@ const TAG = {
     "region": "Central Valley",
     "lat": 36.653,
     "lng": -119.9,
-    "desc": "Comunidad Nuevo Lago is a resident-owned manufactured home community near Fresno, California. In 2019 a corporate investor bought the 60 home Shady Lakes Mobile Home Park and raised rents and fees 57%. Unable to afford these increases and alarmed at deteriorating conditions, the park\u2019s predominantly immigrant, agricultural worker community mobilized, identified financing, formed a cooperative, and ultimately bought the park in 2024. Renamed Comunidad Nuevo Lago, the resident owners are now busy fixing major infrastructure issues at the park, like replacing the street lights and fixing the streets.",
+    "desc": "Nuevo Lago Mobile Home Park in Fresno County is a resident-owned community where predominantly Oaxacan farmworker families organized over five years to purchase their mobile home park from a corporate landlord and prevent displacement. Now structured as a limited-equity housing cooperative, residents collectively own and govern the park, with each household holding a stake and participating in decisions around rents, operations, and community rules.",
     "youtube": "",
     "img": "images/IMG_ROC USA California Network.png",
     "url": "https://www.kqed.org/news/11977464/to-fight-rising-rents-these-fresno-county-residents-bought-their-mobile-home-park",
